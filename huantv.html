@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>视频播放器</title>
+  <style type="text/css">
+	*{margin:0px;padding:0px;}
+	.web{width:100%;height:503px;position:relative;}
+	.con{width:100%;height:503px;background:#ffffff;overflow:hidden;}
+	.con ul li{list-style-type:none;width:100%;height:503px;}
+	.con ul li a{width:100%;height:503px;background:url("images/play.png") no-repeat center;display:block;display:none;}
+	.menu{width:797px;height:55px;position:absolute;left:50%;bottom:25px;margin-left:-398px;}
+	.menu ul li{list-style-type:none;border:2px solid #ffffff;width:90px;height:51px;float:left;margin-left:5px;cursor:pointer;}
+	.menu ul .bor{border-color:#f06000;}
+  </style>
+ </head>
+ <body>
+	<div class="web">
+		<div class="con">
+			<ul>
+				<li style="background:url(images/1.jpg) center;">
+					<a href="http://www.mgtv.com/v/1/291976/f/3145262.html"></a>
+				</li>
+				<li style="background:url(images/2.jpg) center;">
+					<a href="http://www.mgtv.com/v/6/292376/f/3147996.html"></a>
+				</li>
+				<li style="background:url(images/3.jpg) center;">
+					<a href="http://www.mgtv.com/v/2/293308/f/3148433.html"></a>
+				</li>
+				<li style="background:url(images/4.jpg) center;">
+					<a href="http://www.mgtv.com/v/2016/cjns/"></a>
+				</li>
+				<li style="background:url(images/5.jpg) center;">
+					<a href="http://www.mgtv.com/v/2/158205/c/3148661.html"></a>
+				</li>
+				<li style="background:url(images/6.jpg) center;">
+					<a href="http://www.mgtv.com/v/1/292267/f/3146172.html"></a>
+				</li>
+				<li style="background:url(images/7.jpg) center;">
+					<a href="http://www.mgtv.com/liveshow/951.html"></a>
+				</li>
+				<li style="background:url(images/8.jpg) center;">
+					<a href="http://www.mgtv.com/v/1/292390/f/3143496.html"></a>
+				</li>
+			</ul>	
+		</div>
+		<div class="menu">
+			<ul>
+				<li class="bor"><img src="images/nav1.jpg" /></li>
+				<li><img src="images/nav2.jpg" /></li>
+				<li><img src="images/nav3.jpg" /></li>
+				<li><img src="images/nav4.jpg" /></li>
+				<li><img src="images/nav5.jpg" /></li>
+				<li><img src="images/nav6.jpg" /></li>
+				<li><img src="images/nav7.jpg" /></li>
+				<li><img src="images/nav8.jpg" /></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+		var i=0; //存放li下标
+		var time=0;  //存放定时函数
+		$(".con").hover(function(){
+			$(".con ul li a").css("display","block");
+		},function(){
+			$(".con ul li a").css("display","none");
+		});
+		
+		$(".menu ul li").hover(function(){
+			$(this).addClass("bor").siblings().removeClass("bor");
+			i=$(this).index();
+			$(".con ul li").eq(i).fadeIn(300).siblings().fadeOut(300);
+		});
+		function auto(){
+			i++;
+			if(i>7)
+				i=0;
+			$(".menu ul li").eq(i).addClass("bor").siblings().removeClass("bor");
+			$(".con ul li").eq(i).fadeIn(300).siblings().fadeOut(300);
+		}
+		time=setInterval("auto()",3000);
+		$(".con ul li a").hover(function(){
+			clearInterval(time);
+		},function(){
+			time=setInterval("auto()",3000);
+		});
+	</script>
+ </body>
+</html>
